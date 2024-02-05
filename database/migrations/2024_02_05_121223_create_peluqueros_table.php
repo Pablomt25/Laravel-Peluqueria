@@ -13,15 +13,9 @@ return new class extends Migration
     {
         Schema::create('peluqueros', function (Blueprint $table) {
             $table->id();
-<<<<<<< Updated upstream
             $table->string('nombre');
             $table->string('apellidos');
             $table->string('especialidad')->nullable();
-||||||| Stash base
-=======
-            $table->nombre();
-            $table->apellidos();
->>>>>>> Stashed changes
             $table->timestamps();
         });
     }
