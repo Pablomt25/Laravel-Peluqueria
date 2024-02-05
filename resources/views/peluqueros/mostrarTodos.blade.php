@@ -22,7 +22,7 @@
                         <td>{{ $peluquero->especialidad }}</td>
                         <td>
                             <a href="{{ route('peluqueros.mostrarTodos', $peluquero->id) }}" class="btn btn-info">Ver</a>
-                            <a href="{{ route('peluqueros.edit', $peluquero->id) }}" class="btn btn-warning">Editar</a>
+                            <a href="{{ route('peluqueros.edit', $peluquero->id) }}" class="btn btn-warning">Editar</a> 
                             <form action="{{ route('peluqueros.destroy', $peluquero->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')

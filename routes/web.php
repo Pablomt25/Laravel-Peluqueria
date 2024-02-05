@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CitasController;
+use App\Http\Controllers\PeluquerosController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +19,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/peluqueros', [PeluquerosController::class, 'index'])->name('peluqueros.mostrarTodos');
+Route::get('/peluqueros/{id}', [PeluquerosController::class, 'edit'])->name('peluqueros.edit');
+Route::delete('/peluqueros/{id}', [PeluquerosController::class, 'destroy'])->name('peluqueros.destroy');
+
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
