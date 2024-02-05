@@ -13,7 +13,15 @@ return new class extends Migration
     {
         Schema::create('citas', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('nombre_usuario');
+            $table->unsignedBigInteger('nombre_peluquero');
+            $table->unsignedBigInteger('nombre_servicio');
+            $table->dateTime('fecha');
             $table->timestamps();
+
+            $table->foreign('nombre_usuario')->references('nombre')->on('users');
+            $table->foreign('nombre_peluquero')->references('nombre')->on('peluqueros');
+            $table->foreign('nombre_servicio')->references('nombre')->on('servicios');
         });
     }
 
