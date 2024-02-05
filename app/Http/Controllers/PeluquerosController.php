@@ -57,12 +57,12 @@ class PeluquerosController extends Controller
             $request->input('especialidad')
         );
 
-        return redirect()->route('peluqueros.index')->with('success', 'Peluquero actualizado exitosamente');
+        return redirect()->route('peluqueros.mostrarTodos')->with('success', 'Peluquero actualizado exitosamente');
     }
 
     public function destroy($id)
     {
         $this->peluquerosModel->borrarPeluquero($id);
-        return redirect()->route('peluqueros.index')->with('success', 'Peluquero eliminado exitosamente');
+        return redirect()->route('peluqueros.mostrarTodos')->with('success', 'Peluquero eliminado exitosamente');
     }
 }
