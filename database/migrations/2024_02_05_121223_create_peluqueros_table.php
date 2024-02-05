@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('peluqueros', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre');
+            $table->string('apellidos');
+            $table->string('especialidad')->nullable();
             $table->timestamps();
         });
     }
