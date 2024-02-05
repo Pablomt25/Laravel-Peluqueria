@@ -19,7 +19,7 @@ return new class extends Migration
             $table->dateTime('fecha');
             $table->timestamps();
 
-            $table->foreign('nombre_usuario')->references('nombre')->on('users');
+            $table->foreign('nombre_usuario')->references('name')->on('users');
             $table->foreign('nombre_peluquero')->references('nombre')->on('peluqueros');
             $table->foreign('nombre_servicio')->references('nombre')->on('servicios');
         });
