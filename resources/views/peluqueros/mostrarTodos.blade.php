@@ -2,10 +2,10 @@
 
 @section('content')
     <div class="container">
-        <h2>Lista de Peluqueros</h2>
-        <table class="table">
+        <h2 class="text-white">Lista de Peluqueros</h2>
+        <table class="table table-striped table-bordered text-white">
             <thead>
-                <tr>
+                <tr class="bg-dark">
                     <th>ID</th>
                     <th>Nombre</th>
                     <th>Apellidos</th>

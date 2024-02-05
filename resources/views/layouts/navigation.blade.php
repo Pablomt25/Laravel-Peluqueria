@@ -17,7 +17,10 @@
                     </x-nav-link>
                     <x-nav-link :href="route('pedirCita')" :active="request()->routeIs('pedirCita')">
                         {{ __('Pedir Cita') }}
-                    </x-nav-link>                    
+                    </x-nav-link> 
+                    <x-nav-link :href="route('peluqueros.mostrarTodos')" :active="request()->routeIs('peluqueros.mostrarTodos')">
+                        {{ __('Ver peluqueros') }}
+                    </x-nav-link>                     
                 </div>
             </div>
 
