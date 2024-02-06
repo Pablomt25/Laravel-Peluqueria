@@ -653,9 +653,7 @@ html {
         <div class="about-info">
             <h1 class="about-info-heading">Sobre Nosotros</h1>
             <p class="about-info-desc">
-                Me chamo João Víctor Alves, apelidado como Padrin pelos meus amigos. 
-                Tenho 21 anos e atualmente trabalho como barbeiro no Rio de Janeiro pelas áreas do Engenho de Dentro, Méier, Tijuca e proximidades. 
-                Está precisando dos serviços de um barbeiro? Conte comigo!
+                En esta barbería, no solo cortamos cabello, creamos experiencias inolvidables. Somos más que una barbería; somos un destino donde la tradición se encuentra con la modernidad, y la elegancia se combina con la autenticidad.
             </p>
             <a href="#hire" type="button" class="about-info-button">Contato</a>
         </div>
