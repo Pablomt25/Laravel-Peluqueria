@@ -647,12 +647,11 @@ html {
             <img src="./img/img.png" alt="máquina de cortar cabelo">
         </div>
     </section>
-    <!-- End Home Section -->
 
-    <!-- About Section -->
+
     <section id="about" class="about container">
         <div class="about-info">
-            <h1 class="about-info-heading">Sobre mim</h1>
+            <h1 class="about-info-heading">Sobre Nosotros</h1>
             <p class="about-info-desc">
                 Me chamo João Víctor Alves, apelidado como Padrin pelos meus amigos. 
                 Tenho 21 anos e atualmente trabalho como barbeiro no Rio de Janeiro pelas áreas do Engenho de Dentro, Méier, Tijuca e proximidades. 
@@ -662,7 +661,7 @@ html {
         </div>
         <div class="about-img">
             <div class="about-img-wrapper">
-                <img src="./img/img2.jpg" alt="Padrin">
+                <img src="./img/barberia.jpg" alt="Padrin">
             </div>
         </div>
     </section>
