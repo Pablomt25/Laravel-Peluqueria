@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
+<slot>
     <div class="container">
         <h2 class="text-white">Lista de Peluqueros</h2>
         <table class="table table-striped table-bordered text-white">
@@ -34,4 +32,5 @@
             </tbody>
         </table>
     </div>
-@endsection
+</slot>
+
