@@ -20,7 +20,10 @@
                     </x-nav-link> 
                     <x-nav-link :href="route('peluqueros.mostrarTodos')" :active="request()->routeIs('peluqueros.mostrarTodos')">
                         {{ __('Ver peluqueros') }}
-                    </x-nav-link>                     
+                    </x-nav-link>     
+                    <x-nav-link :href="route('servicios.index')" :active="request()->routeIs('servicios.index')">
+                        {{ __('Ver Servicios') }}
+                    </x-nav-link>                   
                 </div>
             </div>
 
