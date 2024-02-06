@@ -8,6 +8,13 @@
 
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/e3c5453e4f.js" crossorigin="anonymous"></script>
 
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Bilbo+Swash+Caps&family=Montserrat:wght@200;300;400;500;600;700&display=swap');
@@ -663,9 +670,7 @@ html {
             </div>
         </div>
     </section>
-    <!-- End About Section -->
 
-    <!-- Service Section -->
         <section id="services" class="services container">
             <div class="services-header">
                 <h1 class="services-header-heading">Servicios</h1>
