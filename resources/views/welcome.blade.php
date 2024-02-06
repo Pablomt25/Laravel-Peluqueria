@@ -604,8 +604,9 @@ html {
 }
     </style>
     </head>
+
+
     <body>
-    <!-- nav-bar -->
         <section id="nav-bar" class="container">
             <header class="nav-bar">
                 <div class="brand"><a href="#"><h1>Barberia</h1></a></div>
@@ -631,9 +632,8 @@ html {
                 </div>
             </header>
         </section>
-    <!-- End nav-bar -->
-    
-    <!-- Home Section -->
+
+
     <section id="home" class="home container">
         <div class="home-info">
             <h1 class="home-info-heading">La mejor barbería</h1>
@@ -644,7 +644,7 @@ html {
             </a>
         </div>
         <div class="home-img">
-            <img src="./img/img.png" alt="máquina de cortar cabelo">
+            <img src="../img/img.png" alt="máquina de cortar cabelo">
         </div>
     </section>
 
@@ -659,7 +659,7 @@ html {
         </div>
         <div class="about-img">
             <div class="about-img-wrapper">
-                <img src="./img/barberia.jpg" alt="Padrin">
+                <img src="../img/barberia.jpg" alt="">
             </div>
         </div>
     </section>
