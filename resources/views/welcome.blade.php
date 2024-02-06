@@ -670,7 +670,7 @@ html {
             <div class="services-header">
                 <h1 class="services-header-heading">Servicios</h1>
                 <p class="services-header-desc">
-                    Confira abaixo os serviços desejados e aproveite todas as vantagens de um agendamento prático e muito rápido. Realizo corte em domicílio, sempre preocupado em deixar o cliente mais à vontade possível.
+                    Consulte a continuación los servicios deseados y disfrute de todas las ventajas de una cita práctica y muy rápida. Realizo cortes de pelo a domicilio, siempre preocupada por que el cliente esté lo más cómodo posible.
                 </p>
             </div>
             <div class="services-info">
@@ -678,13 +678,11 @@ html {
                     <div class="service-card">
                         <div class="service-front">
                             <i class="fas fa-brush"></i>
-                            <h1 class="service-front-heading">Tingimento</h1>
+                            <h1 class="service-front-heading">Tinte</h1>
                         </div>
                         <div class="service-back">
-                            <h1 class="service-back-heading">Tingimento</h1>
-                            <p class="service-back-desc">Esse é perfeito para você que gosta de ousar! 
-                                Rosa, azul, platinado, é só dizer que eu farei para você. Realizo esse tipo de serviço sempre usando 
-                                as melhores tintas e descolorantes, mas, se o cliente preferir, pode trazer sua própria sem problemas! O importante é ser quem você quiser ser.
+                            <h1 class="service-back-heading">Tinte</h1>
+                            <p class="service-back-desc">¡Esto es perfecto para ti a quien le gusta ser atrevido! Rosa, azul, platino, solo dímelo y te lo haré. Este tipo de servicios siempre los realizo utilizando las mejores pinturas y lejías, pero si el cliente lo prefiere puede traer las suyas sin problema! Lo importante es ser quien quieras ser.
                             </p>
                         </div>
                     </div>
@@ -697,9 +695,7 @@ html {
                         </div>
                         <div class="service-back">
                             <h1 class="service-back-heading">Corte</h1>
-                            <p class="service-back-desc">Tá querendo dar uma repáginada no estilo? Corta com o Padrin! 
-                                Garantia de um pézinho bem feito, cuidado e atenção nos maiores detalhes para você ficar mais 
-                                que satisfeito! Corte americano, riscas de navalha, moicano, o que você desejar. 
+                            <p class="service-back-desc">¿Estás buscando darle un cambio de imagen a tu estilo? ¡Corta con Padrín! ¡Garantía de un pie bien hecho, mimo y atención al mayor detalle para que quedes más que satisfecho! Corte americano, navajas, mohawk, lo que quieras. 
                             </p>
                         </div>
                     </div>
@@ -712,9 +708,9 @@ html {
                         </div>
                         <div class="service-back">
                             <h1 class="service-back-heading">Barba</h1>
-                            <p class="service-back-desc">Uma barba bem feita e cuidada está mais que em alta nos tempos modernos. 
-                                Faça a sua barba comigo e evite que a pele fique irritada, o crescimento de pelos encravados, cortes ou o 
-                                surgimento de manchas vermelhas. Só o Padrin para ter esse cuidado com você!
+                            <p class="service-back-desc">Una barba cuidada y cuidada está más que de moda en los tiempos modernos.
+                                Aféitate conmigo y evita la piel irritada, vellos encarnados, cortes o
+                                aparición de manchas rojas. ¡Sólo Padrín puede cuidar así de ti!
                             </p>
                         </div>
                     </div>
