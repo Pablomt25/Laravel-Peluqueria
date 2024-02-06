@@ -1,6 +1,8 @@
-@extends('layouts.app')
+<x-app-layout>
+    <x-slot name="header">
+        <!-- Encabezado de tu página -->
+    </x-slot>
 
-@section('content')
     <div class="container">
         <h2 class="text-white">Listado de Servicios</h2>
         @if ($servicios->isEmpty())
@@ -36,4 +38,4 @@
             </table>
         @endif
     </div>
-@endsection
+</x-app-layout>
