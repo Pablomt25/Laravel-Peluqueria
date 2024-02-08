@@ -31,9 +31,6 @@
                 <div class="btn-group mb-3" role="group" aria-label="Calendar Actions">
                     <button id="exportButton" class="btn btn-success">{{__('Export Calendar')}}</button>
                 </div>
-                <div class="btn-group mb-3" role="group" aria-label="Calendar Actions">
-                    <a href="{{ URL('add-schedule') }}" class="btn btn-success">{{__('Add')}}</a>
-                </div>
                 <form action="{{ URL('add-schedule') }}" method="GET">
                     <label for="peluquero">{{__('Peluquero')}}</label>
                     <select style="color: black" name="peluquero" id="">
@@ -41,7 +38,7 @@
                             <option style="color: black" value="{{ $peluquero->id }}">{{ $peluquero->nombre }}</option>
                         @endforeach
                     </select>
-                    <input type="submit" value="Buscar" class="btn btn-success">
+                    <input type="submit" value="Pedir cita" class="btn btn-success">
                 </form>
 
             </div>
