@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Calendario;
+use App\Models\Peluqueros;
+use App\Models\Servicios;
 use App\Http\Requests\StoreScheduleRequest;
 use App\Http\Requests\UpdateScheduleRequest;
 use Carbon\Carbon;
@@ -17,14 +19,64 @@ class FullCalendarController extends Controller
         return view('calendario.index');
     }
 
+    public function add() {
+        $horas = [];
+        $intervalos = [['10:00', '14:00'], ['16:00', '20:00']];
+
+        foreach ($intervalos as $intervalo) {
+            $hora = Carbon::parse($intervalo[0]);
+            while ($hora->lessThan(Carbon::parse($intervalo[1]))) {
+                $horas[] = $hora->format('H:i');
+                $hora->addMinutes(30);
+            }
+        }
+
+        $peluqueroSeleccionado = $_GET['peluquero'];
+        $horariosOcupados = Calendario::where('peluquero', $peluqueroSeleccionado)
+        ->get()
+        ->pluck('start_time', 'end_time');
+        $peluqueros = Peluqueros::all();
+        $servicios = Servicios::all();
+        return view('calendario.add', compact('peluqueros', 'servicios', 'horariosOcupados', 'horas'));
+    }
+
     public function create(Request $request)
     {
+        // Buscar el servicio seleccionado
+        $servicio = Servicios::find($request->servicio);
+        
+        // Calcular el end_time
+        $start_time = Carbon::parse($request->start_time);
+        $end_time = $start_time->copy()->addMinutes($servicio->duracion);
+
+        $citas = Calendario::where('peluquero', $request->peluquero)
+        ->where(function ($query) use ($start_time, $end_time) {
+            $query->where(function ($query) use ($start_time, $end_time) {
+                // La cita comienza o termina dentro del rango de tiempo solicitado
+                $query->whereBetween('start_time', [$start_time, $end_time])
+                    ->orWhereBetween('end_time', [$start_time, $end_time]);
+            })->orWhere(function ($query) use ($start_time, $end_time) {
+                // La cita comienza antes y termina después del rango de tiempo solicitado
+                $query->where('start_time', '<', $start_time)
+                    ->where('end_time', '>', $end_time);
+            });
+        })
+        ->get();
+
+        if ($citas->count() > 0) {
+            // El peluquero no está disponible en el rango de horario solicitado
+            return redirect('/calendario')->withErrors(['El peluquero no está disponible en el rango de horario solicitado']);
+        }
+
+
+
         $item = new Calendario();
-        $item->title = $request->title;
+        $item->servicio = $request->servicio;
+        $item->peluquero = $request->peluquero;
         $item->start = $request->start;
         $item->end = $request->end;
-        $item->start_time = $request->start_time;
-        $item->end_time = $request->end_time;
+        $item->start_time = $start_time;
+        $item->end_time = $end_time; // Usar el end_time calculado
         $item->description = $request->description;
         $item->color = $request->color;
         $item->save();

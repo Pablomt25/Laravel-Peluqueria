@@ -32,7 +32,7 @@
                     <button id="exportButton" class="btn btn-success">{{__('Export Calendar')}}</button>
                 </div>
                 <div class="btn-group mb-3" role="group" aria-label="Calendar Actions">
-                    <a href="{{ URL('add-schedule') }}" class="btn btn-success">{{__('Add')}}</a>
+                    <a href="{{ URL('add-schedule/?peluquero=1') }}" class="btn btn-success">{{__('Pedir cita con Juan')}}</a>
                 </div>
 
             </div>

@@ -37,8 +37,22 @@
 @section('content')
     <form action="{{ URL('/create-schedule') }}" method="POST">
         @csrf
-        <label for='title'>{{ __('title') }}</label>
-        <input type='text' class='form-control' id='title' name='title'>
+        {{-- <label for='title'>{{ __('title') }}</label>
+        <input type='text' class='form-control' id='title' name='title'> --}}
+
+        <label for="servicio">{{__('Servicio')}}</label>
+        <select name="servicio" id="">
+            @foreach($servicios as $servicio)
+                <option value="{{ $servicio->id }}">{{ $servicio->nombre }}</option>
+            @endforeach
+        </select>
+
+        <label for="peluquero">{{__('Peluquero')}}</label>
+        <select name="peluquero" id="">
+            @foreach($peluqueros as $peluquero)
+                <option value="{{ $peluquero->id }}">{{ $peluquero->nombre }}</option>
+            @endforeach
+        </select>
 
         <label for="start">{{__('Start')}}</label>
         <input type='date' class='form-control' id='start' name='start' required value='{{ now()->toDateString() }}'>
@@ -46,16 +60,16 @@
         <label for="end">{{__('End')}}</label>
         <input type='date' class='form-control' id='end' name='end' required value='{{ now()->toDateString() }}'>
 
-        <label for="start">{{__('Start')}}</label>
-        <input type='time' class='form-control' id='start' name='start_time' required value='{{ now()->toTimeString() }}'>
-
-        <label for="end">{{__('End')}}</label>
-        <input type='time' class='form-control' id='end' name='end_time' required value='{{ now()->toTimeString() }}'>
-
-
-        <label for="description">{{__('Description')}}</label>
-        <textarea id="description" name="description"></textarea>
-
+        <label for="start_time">{{__('Start')}}</label>
+        <select name="start_time">
+            @foreach ($horas as $hora)
+                <option value="{{ $hora }}"
+                    @if ($horariosOcupados->contains($hora)) disabled @endif
+                >
+                    {{ $hora }}
+                </option>
+            @endforeach
+        </select>
         <label for="color">{{__('Color')}}</label>
         <input type="color" id="color" name="color" />
 

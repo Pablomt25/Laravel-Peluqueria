@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('calendario', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->string('servicio');
+            $table->string('peluquero');
             $table->date('start');
             $table->date('end');
             $table->time('start_time');
