@@ -26,6 +26,7 @@
                                 <td class="py-3 px-4 border-b border-gray-600">{{ $servicio->duracion }}</td>
                                 <td class="py-3 px-4 border-b border-gray-600">${{ $servicio->precio }}</td>
                                 <td class="py-3 px-4 border-b border-gray-600">
+                                    <a href="{{ route('servicios.create') }}" class="text-blue-500 hover:underline">Crear</a>
                                     <a href="{{ route('servicios.show', $servicio->id) }}" class="text-blue-500 hover:underline">Ver</a>
                                     <a href="{{ route('servicios.edit', $servicio->id) }}" class="text-yellow-500 hover:underline ml-2">Editar</a>
                                     <form action="{{ route('servicios.destroy', $servicio->id) }}" method="POST" class="inline-block ml-2">

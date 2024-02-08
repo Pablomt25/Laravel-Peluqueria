@@ -45,7 +45,7 @@ class ServiciosController extends Controller
             'precio' => $request->precio
         ]);
 
-        return redirect()->route('servicios.index')->with('success', 'Servicio creado exitosamente');
+        return redirect()->route('servicios.show')->with('success', 'Servicio creado exitosamente');
     }
 
     public function edit($id)
