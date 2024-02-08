@@ -31,6 +31,7 @@ Route::get('/servicios/{id}', [ServiciosController::class, 'show'])->name('servi
 Route::delete('/servicios/{id}', [ServiciosController::class, 'destroy'])->name('servicios.destroy');
 Route::get('/servicios/create', [ServiciosController::class, 'create'])->name('servicios.create');
 
+Route::get('/calendario', [\App\Http\Controllers\FullCalendar::class,'index'])->name('calendario.index');
 
 
 
