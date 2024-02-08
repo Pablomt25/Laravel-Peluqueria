@@ -36,7 +36,7 @@ Route::delete('/servicios/{id}', [ServiciosController::class, 'destroy'])->name(
 Route::get('/servicios/create', [ServiciosController::class, 'create'])->name('servicios.create');
 
 
-Route::get('/calendario', [FullCalendarController::class,'index'])->name('calendario.index');
+Route::get('/pedircita', [FullCalendarController::class,'index'])->name('pedirCita');
 Route::get('/events', [FullCalendarController::class, 'getEvents']);
 Route::delete('/schedule/{id}', [FullCalendarController::class, 'deleteEvent']);
 Route::put('/schedule/{id}', [FullCalendarController::class, 'update']);
@@ -55,7 +55,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::get('/pedircita', [CitasController::class, 'pedirCita'])->name('pedirCita');
 });
 
 

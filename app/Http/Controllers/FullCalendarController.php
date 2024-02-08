@@ -84,7 +84,7 @@ class FullCalendarController extends Controller
         $item->save();
 
         $clienteEmail = 'raulgodii13@gmail.com';
-        Mail::to($clienteEmail)->send(new ConfirmacionCita());
+        Mail::to("raulgodii13@gmail.com")->send(new ConfirmacionCita());
 
         return redirect('/calendario');
     }

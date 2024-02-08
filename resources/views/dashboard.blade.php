@@ -90,21 +90,22 @@
                             <div class="image-container">
                                 <img src="../img/corte-hombre.jpg" alt="">
                                 <div class="image-title">Corte de Hombre</div>
-                                <button class="cta-button">Pedir Cita</button>
+                                <a href="{{ route('pedirCita') }}"><button class="cta-button">Pedir Cita</button></a>
+                                
                             </div>
 
                             <!-- Imagen 2 -->
                             <div class="image-container">
                                 <img src="../img/mechas.jpeg" alt="">
                                 <div class="image-title">Mechas</div>
-                                <button class="cta-button">Pedir Cita</button>
+                                <a href="{{ route('pedirCita') }}"><button class="cta-button">Pedir Cita</button></a>
                             </div>
 
                             <!-- Imagen 3 -->
                             <div class="image-container">
                                 <img src="../img/barba.jpg" alt="">
                                 <div class="image-title">Barba</div>
-                                <button class="cta-button">Pedir Cita</button>
+                                <a href="{{ route('pedirCita') }}"><button class="cta-button">Pedir Cita</button></a>
                             </div>
                         </div>
                     </div>
