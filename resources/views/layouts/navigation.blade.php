@@ -57,6 +57,15 @@
                                 {{ __('Log Out') }}
                             </x-dropdown-link>
                         </form>
+
+
+
+                        <x-dropdown-link :href="route('profile.edit')">
+                            {{ __('Crear Servicio') }}
+                        </x-dropdown-link>
+                        <x-dropdown-link :href="route('profile.edit')">
+                            {{ __('Editar Servicio') }}
+                        </x-dropdown-link>
                     </x-slot>
                 </x-dropdown>
             </div>

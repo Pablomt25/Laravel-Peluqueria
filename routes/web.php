@@ -25,10 +25,12 @@ Route::get('/', function () {
 Route::get('/peluqueros', [PeluquerosController::class, 'index'])->name('peluqueros.mostrarTodos');
 Route::get('/peluqueros/{id}', [PeluquerosController::class, 'edit'])->name('peluqueros.edit');
 Route::delete('/peluqueros/{id}', [PeluquerosController::class, 'destroy'])->name('peluqueros.destroy');
-
+Route::delete('/peluqueros/{id}', [PeluquerosController::class, 'create'])->name('peluqueros.create');
+Route::get('/peluqueros/{id}', [PeluquerosController::class, 'show'])->name('peluqueros.show');
 
 Route::get('/servicios', [ServiciosController::class, 'index'])->name('servicios.index');
-Route::get('/servicios/{id}/edit', [ServiciosController::class, 'edit'])->name('servicios.edit');
+Route::get('/editar-servicio/{id}', [ServiciosController::class, 'edit'])->name('servicios.edit');
+Route::put('/editar-servicio/{id}', [ServiciosController::class, 'update'])->name('servicios.update');
 Route::get('/servicios/{id}', [ServiciosController::class, 'show'])->name('servicios.show');
 Route::delete('/servicios/{id}', [ServiciosController::class, 'destroy'])->name('servicios.destroy');
 Route::get('/servicios/create', [ServiciosController::class, 'create'])->name('servicios.create');
