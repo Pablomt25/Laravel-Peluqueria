@@ -12,6 +12,7 @@
     <title>Personal Schedule Tracker</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
 @endsection
 
     <div class="container mt-5 text-white d-flex align-items-center">
@@ -35,9 +36,9 @@
                 </div>
                 <form action="{{ URL('add-schedule') }}" method="GET">
                     <label for="peluquero">{{__('Peluquero')}}</label>
-                    <select name="peluquero" id="">
+                    <select style="color: black" name="peluquero" id="">
                         @foreach($peluqueros as $peluquero)
-                            <option value="{{ $peluquero->id }}">{{ $peluquero->nombre }}</option>
+                            <option style="color: black" value="{{ $peluquero->id }}">{{ $peluquero->nombre }}</option>
                         @endforeach
                     </select>
                     <input type="submit" value="Buscar" class="btn btn-success">
