@@ -40,27 +40,35 @@ class FullCalendarController extends Controller
     {
         // Buscar el servicio seleccionado
         $servicio = Servicios::find($request->servicio);
-        // Calcular el end_time
+        // Calcular la hora de inicio y fin de la cita
+        $start = Carbon::parse($request->start);
+        $end = Carbon::parse($request->end);    
         $start_time = Carbon::parse($request->start_time);
         $end_time = $start_time->copy()->addMinutes($servicio->duracion);
-
+        
+        // Verificar que la cita se haga en un día
+        if ($start->toDateString() != $end->toDateString()) {
+            // Las fechas de inicio y finalización no son las mismas, por lo que la cita se extiende a través de dos días
+            // Puedes lanzar una excepción, devolver un error, etc.
+        }
+        
         $citas = Calendario::where('peluquero', $request->peluquero)
-        ->where(function ($query) use ($start_time, $end_time) {
-            $query->where(function ($query) use ($start_time, $end_time) {
-                // La cita comienza o termina dentro del rango de tiempo solicitado
-                $query->whereBetween('start_time', [$start_time, $end_time])
-                    ->orWhereBetween('end_time', [$start_time, $end_time]);
-            })->orWhere(function ($query) use ($start_time, $end_time) {
-                // La cita comienza antes y termina después del rango de tiempo solicitado
-                $query->where('start_time', '<', $start_time)
-                    ->where('end_time', '>', $end_time);
-            });
-        })
-        ->get();
+            ->whereDate('start', $start->toDateString())
+            ->where(function ($query) use ($start_time, $end_time) {
+                $query->where(function ($query) use ($start_time, $end_time) {
+                    $query->whereTime('start_time', '>=', $start_time->toTimeString())
+                        ->whereTime('start_time', '<', $end_time->toTimeString());
+                })->orWhere(function ($query) use ($start_time, $end_time) {
+                    $query->whereTime('end_time', '>', $start_time->toTimeString())
+                        ->whereTime('end_time', '<=', $end_time->toTimeString());
+                });
+            })
+            ->get();
+
 
         if ($citas->count() > 0) {
             // El peluquero no está disponible en el rango de horario solicitado
-            return redirect('/calendario')->withErrors(['El peluquero no está disponible en el rango de horario solicitado']);
+            return redirect('/pedircita')->withErrors(['El peluquero no está disponible en el rango de horario solicitado']);
         }
 
         if ($request->peluquero == 1) {
@@ -83,10 +91,10 @@ class FullCalendarController extends Controller
         $item->color = $color;
         $item->save();
 
-        $clienteEmail = 'raulgodii13@gmail.com';
-        Mail::to("raulgodii13@gmail.com")->send(new ConfirmacionCita());
+        // $clienteEmail = 'raulgodii13@gmail.com';
+        // Mail::to("raulgodii13@gmail.com")->send(new ConfirmacionCita());
 
-        return redirect('/calendario');
+        return redirect('/pedircita')->with('success', 'Cita agendada correctamente');
     }
 
 
