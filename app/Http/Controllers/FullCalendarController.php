@@ -9,6 +9,9 @@ use App\Http\Requests\StoreScheduleRequest;
 use App\Http\Requests\UpdateScheduleRequest;
 use Carbon\Carbon;
 
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ConfirmacionCita;
+
 use Illuminate\Http\Request;
 
 class FullCalendarController extends Controller
@@ -79,6 +82,9 @@ class FullCalendarController extends Controller
         $item->description = $request->description;
         $item->color = $color;
         $item->save();
+
+        $clienteEmail = 'raulgodii13@gmail.com';
+        Mail::to($clienteEmail)->send(new ConfirmacionCita());
 
         return redirect('/calendario');
     }
