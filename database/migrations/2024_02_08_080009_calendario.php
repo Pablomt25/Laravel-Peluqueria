@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('calendario', function (Blueprint $table) {
             $table->id();
-            $table->string('servicio');
-            $table->string('peluquero');
+            $table->unsignedBigInteger('usuario');
+            $table->unsignedBigInteger('servicio');
+            $table->unsignedBigInteger('peluquero');
             $table->date('start');
             $table->date('end');
             $table->time('start_time');
@@ -22,6 +23,11 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->string('color')->nullable();
             $table->timestamps();
+
+            $table->foreign('usuario')->references('id')->on('users');
+            $table->foreign('servicio')->references('id')->on('servicios');
+            $table->foreign('peluquero')->references('id')->on('peluqueros');
+
         });
     }
 

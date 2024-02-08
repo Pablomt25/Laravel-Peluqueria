@@ -69,6 +69,7 @@ class FullCalendarController extends Controller
         }
 
         $item = new Calendario();
+        $item->usuario = auth()->user()->id;
         $item->servicio = $request->servicio;
         $item->peluquero = $request->peluquero;
         $item->start = $request->start;
@@ -84,10 +85,11 @@ class FullCalendarController extends Controller
 
 
     public function getEvents()
-    {
-        $schedules = Calendario::all();
-        return response()->json($schedules);
-    }
+{
+    $userId = auth()->user()->id;
+    $schedules = Calendario::where('usuario', $userId)->get();
+    return response()->json($schedules);
+}
 
     public function deleteEvent($id)
     {
