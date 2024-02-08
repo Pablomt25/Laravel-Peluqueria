@@ -7,6 +7,10 @@
 
 @section('head')
     <style>
+        * {
+            box-sizing: border-box;
+            color: white;
+        }
         form {
             width: 100%;
             max-width: 500px;
@@ -34,12 +38,9 @@
         }
     </style>
 @endsection
-@section('content')
-    <form action="{{ URL('/create-schedule') }}" method="POST">
-        @csrf
-        {{-- <label for='title'>{{ __('title') }}</label>
-        <input type='text' class='form-control' id='title' name='title'> --}}
 
+<form action="{{ URL('/create-schedule') }}" method="POST">
+        @csrf
         <label for="servicio">{{__('Servicio')}}</label>
         <select name="servicio" id="">
             @foreach($servicios as $servicio)
@@ -48,33 +49,17 @@
         </select>
 
         <label for="peluquero">{{__('Peluquero')}}</label>
-        <select name="peluquero" id="">
-            @foreach($peluqueros as $peluquero)
-                <option value="{{ $peluquero->id }}">{{ $peluquero->nombre }}</option>
-            @endforeach
-        </select>
+        <input type="hidden" name="peluquero" value="{{$peluqueroSeleccionado}}" id="">
 
         <label for="start">{{__('Start')}}</label>
         <input type='date' class='form-control' id='start' name='start' required value='{{ now()->toDateString() }}'>
 
-        <label for="end">{{__('End')}}</label>
-        <input type='date' class='form-control' id='end' name='end' required value='{{ now()->toDateString() }}'>
+        <input type='hidden'  class='form-control' id='end' name='end' required value='{{ now()->toDateString() }}'>
 
         <label for="start_time">{{__('Start')}}</label>
-        <select name="start_time">
-            @foreach ($horas as $hora)
-                <option value="{{ $hora }}"
-                    @if ($horariosOcupados->contains($hora)) disabled @endif
-                >
-                    {{ $hora }}
-                </option>
-            @endforeach
-        </select>
-        <label for="color">{{__('Color')}}</label>
-        <input type="color" id="color" name="color" />
+        <input type='time' class='form-control' id='start_time' name='start_time' required value='{{ now()->format('H:i') }}'>
 
         <input type="submit" value="Save" class="btn btn-success" />
     </form>
-@endsection
 
 </x-app-layout>

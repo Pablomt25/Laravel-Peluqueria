@@ -14,8 +14,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 @endsection
 
-@section('content')
-    <div class="container mt-5">
+    <div class="container mt-5 text-white d-flex align-items-center">
         {{-- For Search --}}
         <div class="row">
             <div class="col-md-6">
@@ -32,8 +31,17 @@
                     <button id="exportButton" class="btn btn-success">{{__('Export Calendar')}}</button>
                 </div>
                 <div class="btn-group mb-3" role="group" aria-label="Calendar Actions">
-                    <a href="{{ URL('add-schedule/?peluquero=1') }}" class="btn btn-success">{{__('Pedir cita con Juan')}}</a>
+                    <a href="{{ URL('add-schedule') }}" class="btn btn-success">{{__('Add')}}</a>
                 </div>
+                <form action="{{ URL('add-schedule') }}" method="GET">
+                    <label for="peluquero">{{__('Peluquero')}}</label>
+                    <select name="peluquero" id="">
+                        @foreach($peluqueros as $peluquero)
+                            <option value="{{ $peluquero->id }}">{{ $peluquero->nombre }}</option>
+                        @endforeach
+                    </select>
+                    <input type="submit" value="Buscar" class="btn btn-success">
+                </form>
 
             </div>
         </div>
@@ -64,12 +72,10 @@
                 center: 'title', 
                 right: 'dayGridMonth,timeGridWeek,timeGridDay'
             },
-            eventTimeFormat: { // like '14:30:00'
+            eventTimeFormat: { 
                 hour: '2-digit',
                 minute: '2-digit',
-                second: '2-digit',
-                meridiem: false,
-                hour12: false
+                meridiem: false
             },
             initialView: 'dayGridMonth',
             timeZone: 'UTC',
@@ -78,11 +84,14 @@
 
             // Deleting The Event
             eventContent: function(info) {
-                var eventTitle = info.event.title;
-                console.log(info.event);
-                var eventTime = info.event.extendedProps.start_time;
+                var startTime = info.event.extendedProps.start_time;
+                var endTime = info.event.extendedProps.end_time;
+                var formattedStartTime = startTime.slice(0, -3);
+                var formattedEndTime = endTime.slice(0, -3);
+                var peluquero = info.event.extendedProps.peluquero;
+                var servicio = info.event.extendedProps.servicio;
                 var eventElement = document.createElement('div');
-                eventElement.innerHTML = '<span style="cursor: pointer;">❌</span> ' + eventTitle + ' - ' + eventTime;
+                eventElement.innerHTML = '<span style="cursor: pointer;"></span> <p>Hora: ' + formattedStartTime + ' - ' + formattedEndTime + '</p><p>Peluquero: ' + peluquero + '</p><p> Servicio: ' + servicio + '</p>';
 
                 eventElement.querySelector('span').addEventListener('click', function() {
                     if (confirm("Are you sure you want to delete this event?")) {
@@ -213,7 +222,6 @@
             downloadLink.click();
         })
     </script>
-@endsection
 
 
 </x-app-layout>

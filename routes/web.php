@@ -43,7 +43,7 @@ Route::put('/schedule/{id}', [FullCalendarController::class, 'update']);
 Route::put('/schedule/{id}/resize', [FullCalendarController::class, 'resize']);
 Route::get('/events/search', [FullCalendarController::class, 'search']);
 
-Route::view('add-schedule', 'calendario.add');
+Route::get('/add-schedule', [FullCalendarController::class, 'add'], 'add');
 Route::post('create-schedule', [FullCalendarController::class, 'create']);
 
 

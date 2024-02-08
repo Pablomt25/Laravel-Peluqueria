@@ -16,35 +16,27 @@ class FullCalendarController extends Controller
     //
     public function index()
     {
-        return view('calendario.index');
+        $peluqueros = Peluqueros::all();
+        return view('calendario.index', compact('peluqueros'));
     }
 
     public function add() {
+
         $horas = [];
-        $intervalos = [['10:00', '14:00'], ['16:00', '20:00']];
-
-        foreach ($intervalos as $intervalo) {
-            $hora = Carbon::parse($intervalo[0]);
-            while ($hora->lessThan(Carbon::parse($intervalo[1]))) {
-                $horas[] = $hora->format('H:i');
-                $hora->addMinutes(30);
-            }
-        }
-
+        
         $peluqueroSeleccionado = $_GET['peluquero'];
         $horariosOcupados = Calendario::where('peluquero', $peluqueroSeleccionado)
         ->get()
         ->pluck('start_time', 'end_time');
         $peluqueros = Peluqueros::all();
         $servicios = Servicios::all();
-        return view('calendario.add', compact('peluqueros', 'servicios', 'horariosOcupados', 'horas'));
+        return view('calendario.add', compact('peluqueroSeleccionado', 'servicios', 'horariosOcupados', 'horas'));
     }
 
     public function create(Request $request)
     {
         // Buscar el servicio seleccionado
         $servicio = Servicios::find($request->servicio);
-        
         // Calcular el end_time
         $start_time = Carbon::parse($request->start_time);
         $end_time = $start_time->copy()->addMinutes($servicio->duracion);
@@ -68,7 +60,13 @@ class FullCalendarController extends Controller
             return redirect('/calendario')->withErrors(['El peluquero no está disponible en el rango de horario solicitado']);
         }
 
-
+        if ($request->peluquero == 1) {
+            $color = '#FF0000';
+        } else if ($request->peluquero == 2) {
+            $color = '#00FF00';
+        } else if ($request->peluquero == 3) {
+            $color = '#0000FF';
+        }
 
         $item = new Calendario();
         $item->servicio = $request->servicio;
@@ -76,9 +74,9 @@ class FullCalendarController extends Controller
         $item->start = $request->start;
         $item->end = $request->end;
         $item->start_time = $start_time;
-        $item->end_time = $end_time; // Usar el end_time calculado
+        $item->end_time = $end_time;
         $item->description = $request->description;
-        $item->color = $request->color;
+        $item->color = $color;
         $item->save();
 
         return redirect('/calendario');
