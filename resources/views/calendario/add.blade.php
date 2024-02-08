@@ -40,6 +40,24 @@
     </style>
 @endsection
 
+<div>
+    <p>Horarios Ocupados</p>
+    <table>
+        <tr>
+            <th>Día</th>
+            <th>Hora Inicio</th>
+            <th>Hora Fin</th>
+        </tr>
+        @foreach($horariosOcupados as $horario)
+            <tr>
+                <td>{{ $horario->start }}</td>
+                <td>{{ $horario->start_time }}</td>
+                <td>{{ $horario->end_time }}</td>
+            </tr>
+        @endforeach
+    </table>
+</div>
+
 <form action="{{ URL('/create-schedule') }}" method="POST">
         @csrf
         <label for="servicio">{{__('Servicio')}}</label>
@@ -62,5 +80,6 @@
 
         <input type="submit" value="Save" class="btn btn-success" />
     </form>
+
 
 </x-app-layout>

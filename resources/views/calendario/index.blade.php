@@ -44,9 +44,9 @@
             </div>
         </div>
 
-        <div class="card">
-            <div class="card-body">
-                <div id="calendar" style="width: 80%;height:70vh"></div>
+        <div class="card w-100">
+            <div class="card-body  d-flex justify-content-center ">
+                <div id="calendar" style="width: 100%;height:70vh;"></div>
 
             </div>
         </div>

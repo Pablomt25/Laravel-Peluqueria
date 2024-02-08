@@ -29,10 +29,12 @@ class FullCalendarController extends Controller
         
         $peluqueroSeleccionado = $_GET['peluquero'];
         $horariosOcupados = Calendario::where('peluquero', $peluqueroSeleccionado)
-        ->get()
-        ->pluck('start_time', 'end_time');
+        ->get(['start', 'start_time', 'end_time', 'servicio']);
+
         $peluqueros = Peluqueros::all();
         $servicios = Servicios::all();
+
+
         return view('calendario.add', compact('peluqueroSeleccionado', 'servicios', 'horariosOcupados', 'horas'));
     }
 
@@ -84,7 +86,7 @@ class FullCalendarController extends Controller
         $item->servicio = $request->servicio;
         $item->peluquero = $request->peluquero;
         $item->start = $request->start;
-        $item->end = $request->end;
+        $item->end = $request->start;
         $item->start_time = $start_time;
         $item->end_time = $end_time;
         $item->description = $request->description;
