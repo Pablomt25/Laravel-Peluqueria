@@ -36,6 +36,7 @@ Route::put('/editar-servicio/{id}', [ServiciosController::class, 'update'])->nam
 Route::get('/servicios/{id}', [ServiciosController::class, 'show'])->name('servicios.show');
 Route::delete('/servicios/{id}', [ServiciosController::class, 'destroy'])->name('servicios.destroy');
 Route::get('/servicios/create', [ServiciosController::class, 'create'])->name('servicios.create');
+Route::post('/servicios/store', [ServiciosController::class, 'store'])->name('servicios.store');
 
 
 Route::get('/pedircita', [FullCalendarController::class,'index'])->name('pedirCita');
