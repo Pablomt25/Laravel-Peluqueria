@@ -25,17 +25,45 @@ class FullCalendarController extends Controller
 
     public function add() {
 
-        $horas = [];
+        $horasDisponibles = [
+            '10:00:00',
+            '10:30:00',
+            '11:00:00',
+            '11:30:00',
+            '12:00:00',
+            '12:30:00',
+            '13:00:00',
+            '13:30:00',
+            '16:00:00',
+            '16:30:00',
+            '17:00:00',
+            '17:30:00',
+            '18:00:00',
+            '18:30:00',
+            '19:00:00',
+            '19:30:00',
+        ];
         
         $peluqueroSeleccionado = $_GET['peluquero'];
+        $start = ($_GET['start']);
+    
         $horariosOcupados = Calendario::where('peluquero', $peluqueroSeleccionado)
-        ->get(['start', 'start_time', 'end_time', 'servicio']);
+        ->where('start', $start)
+        ->get()
+        ->map(function ($item) {
+            return [
+                'start_time' => $item->start_time,
+            ];
+        });
+        $horariosOcupados = $horariosOcupados->pluck('start_time')->toArray();
+
+        $horasDisponibles = array_diff($horasDisponibles, $horariosOcupados);
 
         $peluqueros = Peluqueros::all();
         $servicios = Servicios::all();
 
 
-        return view('calendario.add', compact('peluqueroSeleccionado', 'servicios', 'horariosOcupados', 'horas'));
+        return view('calendario.add', compact('peluqueroSeleccionado', 'servicios', 'horariosOcupados', 'horasDisponibles', 'start'));
     }
 
     public function create(Request $request)
@@ -46,7 +74,7 @@ class FullCalendarController extends Controller
         $start = Carbon::parse($request->start);
         $end = Carbon::parse($request->end);    
         $start_time = Carbon::parse($request->start_time);
-        $end_time = $start_time->copy()->addMinutes($servicio->duracion);
+        $end_time = $start_time->copy()->addMinutes(30);
         
         // Verificar que la cita se haga en un día
         if ($start->toDateString() != $end->toDateString()) {

@@ -40,24 +40,6 @@
     </style>
 @endsection
 
-<div>
-    <p>Horarios Ocupados</p>
-    <table>
-        <tr>
-            <th>Día</th>
-            <th>Hora Inicio</th>
-            <th>Hora Fin</th>
-        </tr>
-        @foreach($horariosOcupados as $horario)
-            <tr>
-                <td>{{ $horario->start }}</td>
-                <td>{{ $horario->start_time }}</td>
-                <td>{{ $horario->end_time }}</td>
-            </tr>
-        @endforeach
-    </table>
-</div>
-
 <form action="{{ URL('/create-schedule') }}" method="POST">
         @csrf
         <label for="servicio">{{__('Servicio')}}</label>
@@ -70,15 +52,20 @@
         <label for="peluquero">{{__('Peluquero')}}</label>
         <input type="hidden" name="peluquero" value="{{$peluqueroSeleccionado}}" id="">
 
-        <label for="start">{{__('Start')}}</label>
-        <input type='date' class='form-control' id='start' name='start' required value='{{ now()->toDateString() }}'>
+        <input type='hidden' class='form-control' id='start' name='start' required value={{ $start }}>
 
         <input type='hidden'  class='form-control' id='end' name='end' required value='{{ now()->toDateString() }}'>
 
-        <label for="start_time">{{__('Start')}}</label>
-        <input type='time' class='form-control' id='start_time' name='start_time' required value='{{ now()->format('H:i') }}'>
+        <label for="start_time">{{__('Hora')}}</label>
+        <select id="start_time" name="start_time" class="form-control" required>
+            @foreach ($horasDisponibles as $hora)
+                <option value="{{ $hora }}">{{ $hora }}</option>
+            @endforeach
+        </select>
+        
+        
 
-        <input type="submit" value="Save" class="btn btn-success" />
+        <input type="submit" value="Solicitar" class="btn btn-success" />
     </form>
 
 
