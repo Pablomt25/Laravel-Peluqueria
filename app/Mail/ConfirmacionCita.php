@@ -13,12 +13,16 @@ class ConfirmacionCita extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $usuario;
+    public $cita;
+
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($usuario, $cita)
     {
-        //
+        $this->usuario = $usuario;
+        $this->cita = $cita;
     }
 
     /**
@@ -37,7 +41,7 @@ class ConfirmacionCita extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'calendario.index',
+            view: 'calendario.citaConfirmada',
         );
     }
 

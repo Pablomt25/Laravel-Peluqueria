@@ -127,8 +127,8 @@ class FullCalendarController extends Controller
         $item->color = $color;
         $item->save();
 
-        // $clienteEmail = 'raulgodii13@gmail.com';
-        // Mail::to("raulgodii13@gmail.com")->send(new ConfirmacionCita());
+        $clienteEmail = auth()->user()->email;
+        Mail::to($clienteEmail)->send(new ConfirmacionCita(auth()->user(), $item));
 
         return redirect('/pedircita')->with('success', 'Cita agendada correctamente');
     }
