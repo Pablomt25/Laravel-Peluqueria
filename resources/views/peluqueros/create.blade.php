@@ -1,5 +1,8 @@
-@extends('layouts.app')
-
+<x-app-layout>
+    <x-slot name="header">
+        <!-- Encabezado de tu página -->
+    </x-slot>
+    
 @section('content')
     <div class="container">
         <h2>Crear Nuevo Peluquero</h2>
@@ -21,3 +24,5 @@
         </form>
     </div>
 @endsection
+
+</x-app-layout>

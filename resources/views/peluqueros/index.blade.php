@@ -3,39 +3,43 @@
         <!-- Encabezado de tu página -->
     </x-slot>
 
-    <div class="container">
-        <h2 class="text-white">Listado de Servicios</h2>
-        @if ($servicios->isEmpty())
-            <p>No hay servicios disponibles.</p>
+    <div class="container mx-auto mt-8">
+        <h2 class="text-3xl font-semibold text-white mb-6 text-center">Listado de Peluqueros</h2>
+
+        @if ($peluqueros->isEmpty())
+            <p class="text-gray-300 text-center">No hay peluqueros disponibles.</p>
         @else
-            <table class="table table-striped table-bordered text-white">
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Duración (min)</th>
-                        <th>Precio</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($servicios as $servicio)
+            <div class="overflow-x-auto">
+                <table class="mx-auto min-w-full bg-white shadow-md rounded-lg overflow-hidden">
+                    <thead class="bg-gray-800 text-white">
                         <tr>
-                            <td>{{ $servicio->nombre }}</td>
-                            <td>{{ $servicio->duracion }}</td>
-                            <td>{{ $servicio->precio }}</td>
-                            <td>
-                                <a href="{{ route('servicios.show', $servicio->id) }}" class="btn btn-info">Ver</a>
-                                <a href="{{ route('servicios.edit', $servicio->id) }}" class="btn btn-primary">Editar</a>
-                                <form action="{{ route('servicios.destroy', $servicio->id) }}" method="POST" style="display: inline-block;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás seguro?')">Eliminar</button>
-                                </form>
-                            </td>
+                            <th class="py-3 px-4 uppercase font-semibold text-sm border-b border-gray-600">Nombre</th>
+                            <th class="py-3 px-4 uppercase font-semibold text-sm border-b border-gray-600">Apellidos</th>
+                            <th class="py-3 px-4 uppercase font-semibold text-sm border-b border-gray-600">Especialidad</th>
+                            <th class="py-3 px-4 uppercase font-semibold text-sm border-b border-gray-600">Acciones</th>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody class="text-gray-700">
+                        @foreach ($peluqueros as $peluquero)
+                            <tr>
+                                <td class="py-3 px-4 border-b border-gray-600">{{ $peluquero->nombre }}</td>
+                                <td class="py-3 px-4 border-b border-gray-600">{{ $peluquero->apellidos }}</td>
+                                <td class="py-3 px-4 border-b border-gray-600">${{ $peluquero->especialidad }}</td>
+                                <td class="py-3 px-4 border-b border-gray-600">
+                                    <a href="{{ route('peluqueros.create') }}" class="text-blue-500 hover:underline">Crear</a>
+                                    <a href="{{ route('peluqueros.show', $peluquero->id) }}" class="text-blue-500 hover:underline">Ver</a>
+                                    <a href="{{ route('peluqueros.edit', $peluquero->id) }}" class="text-yellow-500 hover:underline ml-2">Editar</a>
+                                    <form action="{{ route('peluqueros.destroy', $peluquero->id) }}" method="POST" class="inline-block ml-2">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="bg-red-500 hover:bg-red-600 text-white py-1 px-2 rounded-md text-sm" onclick="return confirm('¿Estás seguro?')">Eliminar</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         @endif
     </div>
 </x-app-layout>

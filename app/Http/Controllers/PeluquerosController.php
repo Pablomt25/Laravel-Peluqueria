@@ -17,13 +17,13 @@ class PeluquerosController extends Controller
     public function index()
     {
         $peluqueros = $this->peluquerosModel->verPeluqueros();
-        return view('peluqueros.mostrarTodos', ['peluqueros' => $peluqueros]);
+        return view('peluqueros.index', ['peluqueros' => $peluqueros]);
     }
 
     public function show($id)
     {
         $peluqueros = $this->peluquerosModel->verPeluquero($id);
-        return view('peluqueros.mostrarTodos', ['peluqueros' => $peluqueros]);
+        return view('peluqueros.index', ['peluqueros' => $peluqueros]);
     }
 
     public function create()
@@ -33,13 +33,19 @@ class PeluquerosController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'nombre' => 'required',
+            'apellidos' => 'required',
+            'especialidad' => 'required'
+        ]);
+
         $this->peluquerosModel->crearPeluquero(
             $request->input('nombre'),
             $request->input('apellidos'),
             $request->input('especialidad')
         );
 
-        return redirect()->route('peluqueros.mostrarTodos')->with('success', 'Peluquero creado exitosamente');
+        return redirect()->route('peluqueros.index')->with('success', 'Peluquero creado exitosamente');
     }
 
     public function edit($id)
@@ -57,12 +63,12 @@ class PeluquerosController extends Controller
             $request->input('especialidad')
         );
 
-        return redirect()->route('peluqueros.mostrarTodos')->with('success', 'Peluquero actualizado exitosamente');
+        return redirect()->route('peluqueros.index')->with('success', 'Peluquero actualizado exitosamente');
     }
 
     public function destroy($id)
     {
         $this->peluquerosModel->borrarPeluquero($id);
-        return redirect()->route('peluqueros.mostrarTodos')->with('success', 'Peluquero eliminado exitosamente');
+        return redirect()->route('peluqueros.index')->with('success', 'Peluquero eliminado exitosamente');
     }
 }

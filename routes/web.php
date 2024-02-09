@@ -22,10 +22,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/peluqueros', [PeluquerosController::class, 'index'])->name('peluqueros.mostrarTodos');
-Route::get('/peluqueros/{id}', [PeluquerosController::class, 'edit'])->name('peluqueros.edit');
+Route::get('/peluqueros', [PeluquerosController::class, 'index'])->name('peluqueros.index');
+Route::get('/peluqueros/edit/{id}', [PeluquerosController::class, 'edit'])->name('peluqueros.edit');
 Route::delete('/peluqueros/{id}', [PeluquerosController::class, 'destroy'])->name('peluqueros.destroy');
-Route::delete('/peluqueros/{id}', [PeluquerosController::class, 'create'])->name('peluqueros.create');
+Route::delete('/peluqueros/create', [PeluquerosController::class, 'create'])->name('peluqueros.create');
 Route::get('/peluqueros/{id}', [PeluquerosController::class, 'show'])->name('peluqueros.show');
 
 Route::get('/servicios', [ServiciosController::class, 'index'])->name('servicios.index');
