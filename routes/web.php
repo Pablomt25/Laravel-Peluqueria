@@ -35,6 +35,7 @@ Route::group(['middleware' => ['admin']], function () {
     Route::delete('/servicios/{id}', [ServiciosController::class, 'destroy'])->name('servicios.destroy');
     Route::post('/servicios/store', [ServiciosController::class, 'store'])->name('servicios.store');
 
+    Route::get('/citasClientes', [FullCalendarController::class, 'citasClientes'])->name('citasClientes.index');
 
 });
 

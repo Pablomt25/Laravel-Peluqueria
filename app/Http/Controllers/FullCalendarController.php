@@ -23,7 +23,14 @@ class FullCalendarController extends Controller
         return view('calendario.index', compact('peluqueros'));
     }
 
-    public function add() {
+    public function citasClientes()
+    {
+        $citas = Calendario::all();
+        return view('calendario.citasClientes', compact('citas'));
+    }
+
+    public function add()
+    {
 
         $horasDisponibles = [
             '10:00:00',
@@ -43,18 +50,18 @@ class FullCalendarController extends Controller
             '19:00:00',
             '19:30:00',
         ];
-        
+
         $peluqueroSeleccionado = $_GET['peluquero'];
         $start = ($_GET['start']);
-    
+
         $horariosOcupados = Calendario::where('peluquero', $peluqueroSeleccionado)
-        ->where('start', $start)
-        ->get()
-        ->map(function ($item) {
-            return [
-                'start_time' => $item->start_time,
-            ];
-        });
+            ->where('start', $start)
+            ->get()
+            ->map(function ($item) {
+                return [
+                    'start_time' => $item->start_time,
+                ];
+            });
         $horariosOcupados = $horariosOcupados->pluck('start_time')->toArray();
 
         $horasDisponibles = array_diff($horasDisponibles, $horariosOcupados);
@@ -72,16 +79,15 @@ class FullCalendarController extends Controller
         $servicio = Servicios::find($request->servicio);
         // Calcular la hora de inicio y fin de la cita
         $start = Carbon::parse($request->start);
-        $end = Carbon::parse($request->end);    
+        $end = Carbon::parse($request->end);
         $start_time = Carbon::parse($request->start_time);
         $end_time = $start_time->copy()->addMinutes(30);
-        
+
         // Verificar que la cita se haga en un día
         if ($start->toDateString() != $end->toDateString()) {
             // Las fechas de inicio y finalización no son las mismas, por lo que la cita se extiende a través de dos días
-            // Puedes lanzar una excepción, devolver un error, etc.
         }
-        
+
         $citas = Calendario::where('peluquero', $request->peluquero)
             ->whereDate('start', $start->toDateString())
             ->where(function ($query) use ($start_time, $end_time) {
@@ -129,11 +135,11 @@ class FullCalendarController extends Controller
 
 
     public function getEvents()
-{
-    $userId = auth()->user()->id;
-    $schedules = Calendario::where('usuario', $userId)->get();
-    return response()->json($schedules);
-}
+    {
+        $userId = auth()->user()->id;
+        $schedules = Calendario::where('usuario', $userId)->get();
+        return response()->json($schedules);
+    }
 
     public function deleteEvent($id)
     {
