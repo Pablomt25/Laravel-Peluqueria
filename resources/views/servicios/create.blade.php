@@ -1,6 +1,10 @@
-@extends('layouts.app')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __('Crear Servicio') }}
+        </h2>
+    </x-slot>
 
-@section('content')
     <div class="container">
         <h2>Crear Nuevo Servicio</h2>
         <form action="{{ route('servicios.store') }}" method="POST">
@@ -21,4 +25,4 @@
             <a href="{{ route('servicios.index') }}" class="btn btn-secondary">Cancelar</a>
         </form>
     </div>
-@endsection
+</x-app-layout>

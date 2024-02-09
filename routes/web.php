@@ -26,8 +26,9 @@ Route::get('/peluqueros', [PeluquerosController::class, 'index'])->name('peluque
 Route::get('/peluqueros/edit/{id}', [PeluquerosController::class, 'edit'])->name('peluqueros.edit');
 Route::put('/editar-peluquero/{id}', [PeluquerosController::class, 'update'])->name('peluqueros.update');
 Route::delete('/peluqueros/{id}', [PeluquerosController::class, 'destroy'])->name('peluqueros.destroy');
-Route::delete('/peluqueros/create', [PeluquerosController::class, 'create'])->name('peluqueros.create');
+Route::get('/peluqueros/create', [PeluquerosController::class, 'create'])->name('peluqueros.create');
 Route::get('/peluqueros/{id}', [PeluquerosController::class, 'show'])->name('peluqueros.show');
+Route::post('/peluqueros/store', [PeluquerosController::class, 'store'])->name('peluqueros.store');
 
 Route::get('/servicios', [ServiciosController::class, 'index'])->name('servicios.index');
 Route::get('/editar-servicio/{id}', [ServiciosController::class, 'edit'])->name('servicios.edit');
