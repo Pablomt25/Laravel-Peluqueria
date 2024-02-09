@@ -18,16 +18,19 @@
                             <th class="py-3 px-4 uppercase font-semibold text-sm border-b border-gray-600">Nombre</th>
                             <th class="py-3 px-4 uppercase font-semibold text-sm border-b border-gray-600">Apellidos</th>
                             <th class="py-3 px-4 uppercase font-semibold text-sm border-b border-gray-600">Especialidad</th>
+                            @can('admin-actions')
                             <th class="py-3 px-4 uppercase font-semibold text-sm border-b border-gray-600">Acciones</th>
+                            @endcan
                         </tr>
                     </thead>
                     <tbody class="text-gray-700">
                         @foreach ($peluqueros as $peluquero)
                             <tr>
-                                <td class="py-3 px-4 border-b border-gray-600">{{ $peluquero->nombre }}</td>
-                                <td class="py-3 px-4 border-b border-gray-600">{{ $peluquero->apellidos }}</td>
-                                <td class="py-3 px-4 border-b border-gray-600">{{ $peluquero->especialidad }}</td>
-                                <td class="py-3 px-4 border-b border-gray-600">
+                                <td class="text-center py-3 px-4 border-b border-gray-600">{{ $peluquero->nombre }}</td>
+                                <td class="text-center py-3 px-4 border-b border-gray-600">{{ $peluquero->apellidos }}</td>
+                                <td class="text-center py-3 px-4 border-b border-gray-600">{{ $peluquero->especialidad }}</td>
+                                @can('admin-actions')
+                                <td class="text-center py-3 px-4 border-b border-gray-600">
                                     <a href="{{ route('peluqueros.create') }}" class="text-blue-500 hover:underline">Crear</a>
                                     <a href="{{ route('peluqueros.show', $peluquero->id) }}" class="text-blue-500 hover:underline">Ver</a>
                                     <a href="{{ route('peluqueros.edit', $peluquero->id) }}" class="text-yellow-500 hover:underline ml-2">Editar</a>
@@ -37,6 +40,7 @@
                                         <button type="submit" class="bg-red-500 hover:bg-red-600 text-white py-1 px-2 rounded-md text-sm" onclick="return confirm('¿Estás seguro?')">Eliminar</button>
                                     </form>
                                 </td>
+                                @endcan
                             </tr>
                         @endforeach
                     </tbody>

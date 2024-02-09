@@ -33,7 +33,7 @@
                         @endforeach
                     </select>
                     <label for="start">Día</label>
-                    <input style="color: black" type="date" name="start" id="start" value="{{ now()->toDateString() }}">
+                    <input style="color: black" type="date" name="start" id="start" value="{{ now()->toDateString()}}" min="{{ now()->toDateString() }}" >
 
                     <input type="submit" value="Pedir cita" class="btn btn-success">
                 </form>
