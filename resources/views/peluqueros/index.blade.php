@@ -24,7 +24,7 @@
                             <tr>
                                 <td class="py-3 px-4 border-b border-gray-600">{{ $peluquero->nombre }}</td>
                                 <td class="py-3 px-4 border-b border-gray-600">{{ $peluquero->apellidos }}</td>
-                                <td class="py-3 px-4 border-b border-gray-600">${{ $peluquero->especialidad }}</td>
+                                <td class="py-3 px-4 border-b border-gray-600">{{ $peluquero->especialidad }}</td>
                                 <td class="py-3 px-4 border-b border-gray-600">
                                     <a href="{{ route('peluqueros.create') }}" class="text-blue-500 hover:underline">Crear</a>
                                     <a href="{{ route('peluqueros.show', $peluquero->id) }}" class="text-blue-500 hover:underline">Ver</a>

@@ -22,8 +22,8 @@ class PeluquerosController extends Controller
 
     public function show($id)
     {
-        $peluqueros = $this->peluquerosModel->verPeluquero($id);
-        return view('peluqueros.index', ['peluqueros' => $peluqueros]);
+        $peluquero = $this->peluquerosModel->verPeluquero($id);
+        return view('peluqueros.show', ['peluquero' => $peluquero]);
     }
 
     public function create()
