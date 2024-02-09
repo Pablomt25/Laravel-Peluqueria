@@ -31,12 +31,12 @@ Route::get('/peluqueros/{id}', [PeluquerosController::class, 'show'])->name('pel
 Route::post('/peluqueros/store', [PeluquerosController::class, 'store'])->name('peluqueros.store');
 
 Route::get('/servicios', [ServiciosController::class, 'index'])->name('servicios.index');
+Route::get('/servicios/create', [ServiciosController::class, 'create'])->name('servicios.create');
+Route::post('/servicios/store', [ServiciosController::class, 'store'])->name('servicios.store');
 Route::get('/editar-servicio/{id}', [ServiciosController::class, 'edit'])->name('servicios.edit');
 Route::put('/editar-servicio/{id}', [ServiciosController::class, 'update'])->name('servicios.update');
 Route::get('/servicios/{id}', [ServiciosController::class, 'show'])->name('servicios.show');
 Route::delete('/servicios/{id}', [ServiciosController::class, 'destroy'])->name('servicios.destroy');
-Route::get('/servicios/create', [ServiciosController::class, 'create'])->name('servicios.create');
-Route::post('/servicios/store', [ServiciosController::class, 'store'])->name('servicios.store');
 
 
 Route::get('/pedircita', [FullCalendarController::class,'index'])->name('pedirCita');
