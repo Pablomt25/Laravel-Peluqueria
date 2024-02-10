@@ -107,12 +107,24 @@ class FullCalendarController extends Controller
             return redirect('/pedircita')->withErrors(['El peluquero no está disponible en el rango de horario solicitado']);
         }
 
-        if ($request->peluquero == 1) {
-            $color = '#FF0000';
-        } else if ($request->peluquero == 2) {
-            $color = '#00FF00';
-        } else if ($request->peluquero == 3) {
-            $color = '#0000FF';
+        // Obtener todos los peluqueros
+        $peluqueros = Peluqueros::all();
+
+        // Definir una paleta de colores
+        $paletaColores = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#00FFFF', '#FF00FF']; // y así sucesivamente con tantos colores como necesites
+
+        // Obtener el índice del peluquero en la lista completa
+        $indexPeluquero = $peluqueros->search(function ($peluquero) use ($request) {
+            return $peluquero->id == $request->peluquero;
+        });
+
+        // Verificar si se encontró el peluquero y asignar un color
+        if ($indexPeluquero !== false) {
+            // Si se encontró el peluquero, obtener el color correspondiente de la paleta
+            $color = $paletaColores[$indexPeluquero % count($paletaColores)];
+        } else {
+            // Si no se encontró el peluquero, asignar un color por defecto
+            $color = '#CCCCCC'; // Por ejemplo, gris
         }
 
         $item = new Calendario();
