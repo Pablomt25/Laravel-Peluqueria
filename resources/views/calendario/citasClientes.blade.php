@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="flex items-center justify-center min-h-screen">
+    <div class="flex items-center justify-center min-h-screen" style="margin-top:20px">
         <div class="bg-white p-12 border shadow-lg rounded-md max-w-md" style="padding: 20px">
             @if ($citas->isNotEmpty())
                 <h2 class="text-4xl font-semibold mb-8 text-gray-800" style="text-align: center; padding:10px; font-size:1.5rem">Citas del Calendario</h2>
