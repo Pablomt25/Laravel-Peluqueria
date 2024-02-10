@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container mx-auto mt-8">
+    <div class="container mx-auto mt-8" style="margin-left:400px; margin-right:400px;">
         <div class="mx-4 bg-white p-8 border shadow-lg rounded-md">
-            <h2 class="text-2xl font-semibold mb-6 text-gray-800">Editar Peluquero</h2>
-            <form action="{{ route('peluqueros.update', $peluquero->id) }}" method="POST">
+            <h2 class="text-2xl font-semibold mb-6 text-gray-800" style="text-align: center; margin-top:20px">Editar Peluquero</h2>
+            <form action="{{ route('peluqueros.update', $peluquero->id) }}" method="POST" style="padding: 10px">
                 @csrf
                 @method('PUT')
 

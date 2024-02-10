@@ -2,10 +2,10 @@
 
 @section('content')
     <div class="flex items-center justify-center min-h-screen">
-        <div class="bg-white p-12 border shadow-lg rounded-md max-w-md">
+        <div class="bg-white p-12 border shadow-lg rounded-md max-w-md" style="padding: 20px">
             @if ($citas->isNotEmpty())
-                <h2 class="text-4xl font-semibold mb-8 text-gray-800">Citas del Calendario</h2>
-                <div class="text-gray-700">
+                <h2 class="text-4xl font-semibold mb-8 text-gray-800" style="text-align: center; padding:10px; font-size:1.5rem">Citas del Calendario</h2>
+                <div class="text-gray-700" style="padding: 10px">
                     <ul>
                         @foreach ($citas as $cita)
                             <li>
@@ -16,7 +16,7 @@
                                 <strong>Hora de fin:</strong> {{ $cita->end_time }} <br>
                                 <strong>Descripción:</strong> {{ $cita->description }}
                             </li>
-                            <hr>
+                            <hr style="margin-bottom: 15px; margin-top:15px;">
                         @endforeach
                     </ul>
                 </div>
