@@ -5,68 +5,40 @@
         </h2>
     </x-slot>
 
-@section('head')
-    <style>
-        * {
-            box-sizing: border-box;
-            color: white;
-        }
-        form {
-            width: 100%;
-            max-width: 500px;
-            margin: 0 auto;
-            color: white;
-        }
+    @section('head')
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    @endsection
 
-        label {
-            display: block;
-            margin-top: 20px;
-        }
-
-        input,
-        textarea {
-            width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        input[type="submit"] {
-            margin-top: 20px;
-            background-color: green;
-            color: white;
-        }
-    </style>
-@endsection
-
-<form action="{{ URL('/create-schedule') }}" method="POST">
+    <form action="{{ URL('/create-schedule') }}" method="POST" class="max-w-md mx-auto mt-8 bg-white p-8 rounded shadow-md" style="margin-left: 300px; margin-right: 300px; padding:20px">
         @csrf
-        <label for="servicio">{{__('Servicio')}}</label>
-        <select name="servicio" id="">
-            @foreach($servicios as $servicio)
-                <option value="{{ $servicio->id }}">{{ $servicio->nombre }}</option>
-            @endforeach
-        </select>
 
-        <label for="peluquero">{{__('Peluquero')}}</label>
-        <input type="hidden" name="peluquero" value="{{$peluqueroSeleccionado}}" id="">
+        <div class="mb-4">
+            <label for="servicio" class="block text-gray-700 text-sm font-bold mb-2">Servicio</label>
+            <select name="servicio" id="servicio" class="w-full p-2 border border-gray-300 rounded">
+                @foreach($servicios as $servicio)
+                    <option value="{{ $servicio->id }}">{{ $servicio->nombre }}</option>
+                @endforeach
+            </select>
+        </div>
 
-        <input type='hidden' class='form-control' id='start' name='start' required value={{ $start }}>
+        <div class="mb-4">
+            <label for="peluquero" class="block text-gray-700 text-sm font-bold mb-2">Peluquero</label>
+            <input type="hidden" name="peluquero" value="{{ $peluqueroSeleccionado }}" class="w-full p-2 border border-gray-300 rounded">
+        </div>
 
-        <input type='hidden'  class='form-control' id='end' name='end' required value='{{ now()->toDateString() }}'>
+        <div class="mb-4">
+            <label for="start_time" class="block text-gray-700 text-sm font-bold mb-2">Hora</label>
+            <select id="start_time" name="start_time" class="w-full p-2 border border-gray-300 rounded" required>
+                @foreach ($horasDisponibles as $hora)
+                    <option value="{{ $hora }}">{{ $hora }}</option>
+                @endforeach
+            </select>
+        </div>
 
-        <label for="start_time">{{__('Hora')}}</label>
-        <select id="start_time" name="start_time" class="form-control" required>
-            @foreach ($horasDisponibles as $hora)
-                <option value="{{ $hora }}">{{ $hora }}</option>
-            @endforeach
-        </select>
-        
-        
+        <input type="hidden" class="form-control" id="start" name="start" required value="{{ $start }}">
+        <input type="hidden" class="form-control" id="end" name="end" required value="{{ now()->toDateString() }}">
 
-        <input type="submit" value="Solicitar" class="btn btn-success" />
+        <button type="submit" style=" background-color:green;color: white; padding: 8px 16px; border-radius: 4px;">Solicitar</button>
+
     </form>
-
-
 </x-app-layout>
