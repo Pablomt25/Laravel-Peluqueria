@@ -111,7 +111,7 @@ class FullCalendarController extends Controller
         $peluqueros = Peluqueros::all();
 
         // Definir una paleta de colores
-        $paletaColores = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#00FFFF', '#FF00FF']; // y así sucesivamente con tantos colores como necesites
+        $paletaColores = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#00FFFF', '#FF00FF'];
 
         // Obtener el índice del peluquero en la lista completa
         $indexPeluquero = $peluqueros->search(function ($peluquero) use ($request) {
@@ -124,7 +124,7 @@ class FullCalendarController extends Controller
             $color = $paletaColores[$indexPeluquero % count($paletaColores)];
         } else {
             // Si no se encontró el peluquero, asignar un color por defecto
-            $color = '#CCCCCC'; // Por ejemplo, gris
+            $color = '#CCCCCC'; 
         }
 
         $item = new Calendario();
