@@ -5,10 +5,10 @@
         </h2>
     </x-slot>
 
-    <div class="container mx-auto mt-8">
+    <div class="container mx-auto mt-8" style="margin-left:400px; margin-right:400px;">
         <div class="mx-4 bg-white p-8 border shadow-lg rounded-md">
-            <h2 class="text-2xl font-semibold mb-6 text-gray-800">Crear Nuevo Servicio</h2>
-            <form method="POST" action="{{ route('servicios.store') }}">
+            <h2 class="text-2xl font-semibold mb-6 text-gray-800" style="text-align: center; margin-top:20px">Crear Nuevo Servicio</h2>
+            <form method="POST" action="{{ route('servicios.store') }}" style="padding: 10px">
                 @csrf
                 <div class="mb-4">
                     <label for="nombre" class="block text-sm font-semibold text-gray-600">Nombre:</label>

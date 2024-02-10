@@ -2,10 +2,10 @@
 
 @section('content')
     <div class="flex items-center justify-center min-h-screen">
-        <div class="bg-white p-12 border shadow-lg rounded-md max-w-md">
+        <div class="bg-white p-12 border shadow-lg rounded-md max-w-md" style="padding: 20px">
             @if ($servicio)
-                <h2 class="text-4xl font-semibold mb-8 text-gray-800">Detalles del Servicio</h2>
-                <div class="text-gray-700">
+                <h2 class="text-4xl font-semibold mb-8 text-gray-800" style="text-align: center; padding:10px; font-size:1.5rem">Detalles del Servicio</h2>
+                <div class="text-gray-700" style="padding: 10px">
                     <p class="mb-4"><strong>Nombre:</strong> {{ $servicio->nombre }}</p>
                     <p class="mb-4"><strong>Duración (min):</strong> {{ $servicio->duracion }}</p>
                     <p class="mb-6"><strong>Precio:</strong> {{ $servicio->precio }}</p>

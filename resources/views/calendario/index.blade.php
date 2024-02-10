@@ -1,50 +1,47 @@
 <x-app-layout>
-  <x-slot name="header">
-      <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-          {{ __('Peluqueria') }}
-      </h2>
-  </x-slot>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __('Barbería') }}
+        </h2>
+    </x-slot>
 
-
-@section('head')
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Schedule Tracker</title>
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    
-@endsection
+    @section('head')
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Personal Schedule Tracker</title>
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    @endsection
 
     <div class="container mt-5 text-white d-flex align-items-center">
         {{-- For Search --}}
         <div class="row">
             <div class="col-md-6">
                 <div class="input-group mb-3">
-
                 </div>
             </div>
 
             <div class="col-md-6">
-                <form action="{{ URL('add-schedule') }}" method="GET">
-                    <label for="peluquero">{{__('Peluquero')}}</label>
-                    <select style="color: black" name="peluquero" id="">
+                <form action="{{ URL('add-schedule') }}" method="GET" style="margin: 20px; padding:20px; background-color:rgb(219, 219, 219); margin-right:500px; text-align:center; margin-left:500px;border-radius:10px">
+                    <label style="color: black" for="peluquero">{{__('Peluquero')}}</label>
+                    <select name="peluquero" style="color: black" class="form-control">
                         @foreach($peluqueros as $peluquero)
-                            <option style="color: black" value="{{ $peluquero->id }}">{{ $peluquero->nombre }}</option>
+                            <option value="{{ $peluquero->id }}" style="color: black">{{ $peluquero->nombre }}</option>
                         @endforeach
                     </select>
-                    <label for="start">Día</label>
-                    <input style="color: black" type="date" name="start" id="start" value="{{ now()->toDateString()}}" min="{{ now()->toDateString() }}" >
+                    
+                    <label style="color:black" for="start">Día</label>
+                    <input type="date" name="start" id="start" value="{{ now()->toDateString() }}" min="{{ now()->toDateString() }}" class="form-control" style="color: black">
 
-                    <button type="submit" class="btn btn-success" style="background-color: green: color:white">Pedir cita</button>
+                    <!-- Ajustado el estilo del botón -->
+                    <button type="submit" class="btn btn-success mt-2" style="background-color: green; color: white; padding:9px; border-radius:10px">Pedir cita</button>
                 </form>
-
             </div>
         </div>
 
         <div class="card w-100">
             <div class="card-body  d-flex justify-content-center ">
-                <div id="calendar" style="width: 100%;height:70vh;"></div>
-
+                <div id="calendar" style="max-width: 800px; max-height: 600px; margin-left:370px"></div>
             </div>
         </div>
     </div>
