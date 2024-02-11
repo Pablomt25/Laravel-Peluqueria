@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-    <div class="container mx-auto mt-8" style="margin-left:400px; margin-right:400px;">
+    <div class="container mx-auto mt-8" >
         <div class="mx-4 bg-white p-8 border shadow-lg rounded-md">
             <h2 class="text-2xl font-semibold mb-6 text-gray-800" style="text-align: center; margin-top:20px">Crear Nuevo Peluquero</h2>
             <form method="POST" action="{{ route('peluqueros.store') }}" style="padding: 10px">
