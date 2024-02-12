@@ -5,6 +5,7 @@ use App\Http\Controllers\PeluquerosController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ServiciosController;
 use App\Http\Controllers\FullCalendarController;
+use App\Models\Calendario;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -53,7 +54,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/pedircita', [FullCalendarController::class,'index'])->name('pedirCita');
     Route::get('/events', [FullCalendarController::class, 'getEvents']);
-    Route::delete('/schedule/{id}', [FullCalendarController::class, 'deleteEvent']);
+    Route::delete('/schedule/{id}', [FullCalendarController::class, 'deleteEvent'])->name('citas.destroy');
     Route::put('/schedule/{id}', [FullCalendarController::class, 'update']);
     Route::put('/schedule/{id}/resize', [FullCalendarController::class, 'resize']);
     Route::get('/events/search', [FullCalendarController::class, 'search']);

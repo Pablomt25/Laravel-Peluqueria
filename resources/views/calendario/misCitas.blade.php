@@ -15,6 +15,11 @@
                                 <strong>Hora de inicio:</strong> {{ $cita->start_time }} <br>
                                 <strong>Hora de fin:</strong> {{ $cita->end_time }} <br>
                                 <strong>Descripción:</strong> {{ $cita->description }}
+                                <form action="{{ route('citas.destroy', $cita->id) }}" method="POST" class="inline-block ml-2">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="bg-red-500 hover:bg-red-600 text-white py-1 px-2 rounded-md text-sm" onclick="return confirm('¿Estás seguro?')">Cancelar</button>
+                                </form>
                             </li>
                             <hr style="margin-bottom: 15px; margin-top:15px;">
                         @endforeach
@@ -24,7 +29,7 @@
                     <a href="{{ route('peluqueros.index') }}" class="bg-blue-500 hover:bg-blue-600 text-black py-3 px-6 rounded-md">Volver</a>
                 </div>
             @else
-                <p class="text-red-500">No hay citas en el calendario.</p>
+                <p class="text-red-500">No tienes citas pendientes.</p>
             @endif
         </div>
     </div>

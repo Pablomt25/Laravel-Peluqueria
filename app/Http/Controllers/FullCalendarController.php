@@ -11,6 +11,7 @@ use Carbon\Carbon;
 
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ConfirmacionCita;
+use App\Mail\CancelacionCita;
 
 use Illuminate\Http\Request;
 
@@ -165,7 +166,10 @@ class FullCalendarController extends Controller
         $schedule = Calendario::findOrFail($id);
         $schedule->delete();
 
-        return response()->json(['message' => 'Event deleted successfully']);
+        $clienteEmail = auth()->user()->email;
+        Mail::to($clienteEmail)->send(new CancelacionCita(auth()->user(), $schedule));
+
+        return redirect('/misCitas');
     }
 
     public function update(Request $request, $id)
