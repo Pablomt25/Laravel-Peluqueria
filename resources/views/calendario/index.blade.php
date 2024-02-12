@@ -72,9 +72,8 @@
             initialView: 'dayGridMonth',
             timeZone: 'UTC',
             events: '/events',
-            editable: true,
+            editable: false,
 
-            // Deleting The Event
             eventContent: function(info) {
                 var startTime = info.event.extendedProps.start_time;
                 var endTime = info.event.extendedProps.end_time;
@@ -83,136 +82,20 @@
                 var peluquero = info.event.extendedProps.peluquero;
                 var servicio = info.event.extendedProps.servicio;
                 var eventElement = document.createElement('div');
-                eventElement.innerHTML = '<span style="cursor: pointer;"></span> <p>Hora: ' + formattedStartTime + ' - ' + formattedEndTime + '</p><p>Peluquero: ' + peluquero + '</p><p> Servicio: ' + servicio + '</p>';
+                eventElement.innerHTML = '<p>Hora: ' + formattedStartTime + ' - ' + formattedEndTime + '</p><p>Peluquero: ' + peluquero + '</p><p> Servicio: ' + servicio + '</p>';
 
-                eventElement.querySelector('span').addEventListener('click', function() {
-                    if (confirm("Are you sure you want to delete this event?")) {
-                        var eventId = info.event.id;
-                        $.ajax({
-                            method: 'DELETE',
-                            url: '/schedule/delete/' + eventId,
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            },
-                            success: function(response) {
-                                console.log('Event deleted successfully.');
-                                calendar.refetchEvents();
-                            },
-                            error: function(error) {
-                                console.error('Error deleting event:', error);
-                            }
-                        });
-                    }
-                });
                 return {
                     domNodes: [eventElement]
                 };
             },
 
-            // Drag And Drop
-
-            eventDrop: function(info) {
-                var eventId = info.event.id;
-                var newStartDate = info.event.start;
-                var newEndDate = info.event.end || newStartDate;
-                var newStartDateUTC = newStartDate.toISOString().slice(0, 10);
-                var newEndDateUTC = newEndDate.toISOString().slice(0, 10);
-
-                $.ajax({
-                    method: 'PUT',
-                    url: `/schedule/${eventId}`,
-                    data: {
-                        start_date: newStartDateUTC,
-                        end_date: newEndDateUTC,
-                    },
-                    success: function() {
-                        console.log('Event moved successfully.');
-                    },
-                    error: function(error) {
-                        console.error('Error moving event:', error);
-                    }
-                });
-            },
-
-            // Event Resizing
-            eventResize: function(info) {
-                var eventId = info.event.id;
-                var newEndDate = info.event.end;
-                var newEndDateUTC = newEndDate.toISOString().slice(0, 10);
-
-                $.ajax({
-                    method: 'PUT',
-                    url: `/schedule/${eventId}/resize`,
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    data: {
-                        end_date: newEndDateUTC
-                    },
-                    success: function() {
-                        console.log('Event resized successfully.');
-                    },
-                    error: function(error) {
-                        console.error('Error resizing event:', error);
-                    }
-                });
-            },
+           
         });
 
         calendar.render();
 
-        document.getElementById('searchButton').addEventListener('click', function() {
-            var searchKeywords = document.getElementById('searchInput').value.toLowerCase();
-            filterAndDisplayEvents(searchKeywords);
-        });
 
 
-        function filterAndDisplayEvents(searchKeywords) {
-            $.ajax({
-                method: 'GET',
-                url: `/events/search?title=${searchKeywords}`,
-                success: function(response) {
-                    calendar.removeAllEvents();
-                    calendar.addEventSource(response);
-                },
-                error: function(error) {
-                    console.error('Error searching events:', error);
-                }
-            });
-        }
-
-
-        // Exporting Function
-        document.getElementById('exportButton').addEventListener('click', function() {
-            var events = calendar.getEvents().map(function(event) {
-                return {
-                    title: event.title,
-                    start: event.start ? event.start.toISOString() : null,
-                    end: event.end ? event.end.toISOString() : null,
-                    color: event.backgroundColor,
-                };
-            });
-
-            var wb = XLSX.utils.book_new();
-
-            var ws = XLSX.utils.json_to_sheet(events);
-
-            XLSX.utils.book_append_sheet(wb, ws, 'Events');
-
-            var arrayBuffer = XLSX.write(wb, {
-                bookType: 'xlsx',
-                type: 'array'
-            });
-
-            var blob = new Blob([arrayBuffer], {
-                type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-            });
-
-            var downloadLink = document.createElement('a');
-            downloadLink.href = URL.createObjectURL(blob);
-            downloadLink.download = 'events.xlsx';
-            downloadLink.click();
-        })
     </script>
 
 
