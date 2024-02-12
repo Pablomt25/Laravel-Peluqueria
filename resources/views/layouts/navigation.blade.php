@@ -24,6 +24,9 @@
                     <x-nav-link :href="route('servicios.index')" :active="request()->routeIs('servicios.index')">
                         {{ __('Ver Servicios') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('misCitas.index')" :active="request()->routeIs('misCitas.index')">
+                        {{ __('Mis Citas') }}
+                    </x-nav-link>
                     @can('admin-actions')
                         <x-nav-link :href="route('citasClientes.index')" :active="request()->routeIs('citasClientes.index')">
                             {{ __('Citas Clientes') }}

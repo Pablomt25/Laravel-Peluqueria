@@ -23,6 +23,13 @@ class FullCalendarController extends Controller
         return view('calendario.index', compact('peluqueros'));
     }
 
+    public function misCitas()
+    {
+        $userId = auth()->user()->id;
+        $citas = Calendario::where('usuario', $userId)->get();
+        return view('calendario.miscitas', compact('citas'));
+    }
+
     public function citasClientes()
     {
         $citas = Calendario::all();
